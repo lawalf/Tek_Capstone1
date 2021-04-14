@@ -41,39 +41,39 @@ def index():
     return render_template('home.html')
 
 @app.route('/add', methods=['GET', 'POST'])
-def add_pup():
+def add_tractor():
     form = AddForm()
 
     if form.validate_on_submit():
         name = form.name.data
 
-        # Add new Puppy to database
-        new_pup = Puppy(name)
-        db.session.add(new_pup)
+        # Add new Tractor to database
+        new_tractor = Tractor(name)
+        db.session.add(new_tractor)
         db.session.commit()
 
-        return redirect(url_for('list_pup'))
+        return redirect(url_for('list_tractor'))
 
     return render_template('add.html',form=form)
 
 @app.route('/list')
-def list_pup():
-    # Grab a list of puppies from database.
-    puppies = Puppy.query.all()
-    return render_template('list.html', puppies=puppies)
+def list_tractor():
+    # Grab a list of tractors from database.
+    tractors = Tractor.query.all()
+    return render_template('list.html', tractors=tractors)
 
 @app.route('/delete', methods=['GET', 'POST'])
-def del_pup():
+def del_tractor():
 
     form = DelForm()
 
     if form.validate_on_submit():
         id = form.id.data
-        pup = Puppy.query.get(id)
-        db.session.delete(pup)
+        tractor = Tractor.query.get(id)
+        db.session.delete(tractor)
         db.session.commit()
 
-        return redirect(url_for('list_pup'))
+        return redirect(url_for('list_tractor'))
     return render_template('delete.html',form=form)
 
 

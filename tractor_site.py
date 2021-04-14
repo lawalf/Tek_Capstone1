@@ -13,15 +13,15 @@ app.config['SECRET_KEY'] = 'mysecretkey'
 
 ##########################################
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:JigglyPuff1234@localhost/puppydb'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:JigglyPuff1234@localhost/tractordb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 Migrate(app,db)
 
-class Puppy(db.Model):
+class Tractor(db.Model):
 
-    __tablename__ = 'puppies'
+    __tablename__ = 'Tractors'
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.Text)
 
@@ -29,7 +29,7 @@ class Puppy(db.Model):
         self.name = name
 
     def __repr__(self):
-        return f"Puppy name: {self.name}"
+        return f"Tractor type: {self.name}"
 
 ############################################
 
